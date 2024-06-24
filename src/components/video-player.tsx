@@ -1,3 +1,6 @@
+import "../scripts/hls-video-element.js";
+import "../scripts/media-chrome.js";
+
 export function VideoPlayer({ source, poster, aspectRatio }: { source: string; poster: string; aspectRatio: number }) {
   return (
     <div
@@ -9,7 +12,7 @@ export function VideoPlayer({ source, poster, aspectRatio }: { source: string; p
         className="farcaster-embed-video-player"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
-          __html: `<script type="module" src="https://cdn.jsdelivr.net/npm/media-chrome@1/+esm" crossorigin="anonymous"></script><script type="module" src="https://cdn.jsdelivr.net/npm/hls-video-element@1.0/+esm" crossorigin="anonymous"></script><media-controller>
+          __html: `<media-controller>
             <hls-video
               src="${source}"
               slot="media"

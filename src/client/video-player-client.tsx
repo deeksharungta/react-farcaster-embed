@@ -1,5 +1,7 @@
 "use client";
 import React from "react";
+import "../scripts/hls-video-element.js";
+import "../scripts/media-chrome.js";
 
 export function VideoPlayerClient({
   source,
@@ -10,23 +12,23 @@ export function VideoPlayerClient({
   poster: string;
   aspectRatio: number;
 }) {
-  const [isMediaChromeLoaded, setIsMediaChromeLoaded] = React.useState(true);
-  const [isHlsVideoElementLoaded, setIsHlsVideoElementLoaded] = React.useState(true);
+  const [isMediaChromeLoaded, setIsMediaChromeLoaded] = React.useState(false);
+  const [isHlsVideoElementLoaded, setIsHlsVideoElementLoaded] = React.useState(false);
 
-  const loadScript = (src: string) => {
-    return new Promise((resolve, reject) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.type = "module";
-      script.onload = () => resolve(script);
-      script.onerror = () => reject(new Error(`[react-farcaster-embed] Script load error for ${src}`));
-      document.head.appendChild(script);
-    });
-  };
+  // const loadScript = (src: string) => {
+  //   return new Promise((resolve, reject) => {
+  //     const script = document.createElement("script");
+  //     script.src = src;
+  //     script.type = "module";
+  //     script.onload = () => resolve(script);
+  //     script.onerror = () => reject(new Error(`[react-farcaster-embed] Script load error for ${src}`));
+  //     document.head.appendChild(script);
+  //   });
+  // };
 
   // React.useEffect(() => {
-  //   // const mediaChrome = "https://cdn.jsdelivr.net/npm/media-chrome@1/+esm";
-  //   // const hlsVideoElement = "https://cdn.jsdelivr.net/npm/hls-video-element@1.0/+esm";
+  //   const mediaChrome = "https://cdn.jsdelivr.net/npm/media-chrome@1/+esm";
+  //   const hlsVideoElement = "https://cdn.jsdelivr.net/npm/hls-video-element@1.0/+esm";
 
   //   loadScript(mediaChrome)
   //     .then(() => {
