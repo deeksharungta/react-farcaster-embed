@@ -49,10 +49,14 @@
   },
   "packageManager": "pnpm@8.12.1",
   "dependencies": {
+    "custom-media-element": "^1.3.2",
     "hls-video-element": "^1.2.7",
+    "hls.js": "^1.5.11",
+    "hls.mjs": "link:hls.js/dist/hls.mjs",
     "linkify-react": "^4.1.3",
     "linkifyjs": "^4.1.3",
     "media-chrome": "^3.2.3",
+    "media-tracks": "^0.3.3",
     "server-only": "^0.0.1"
   }
 }
