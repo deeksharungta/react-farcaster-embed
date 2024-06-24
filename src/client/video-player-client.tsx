@@ -1,7 +1,5 @@
 "use client";
 import React from "react";
-import "../scripts/hls-video-element.js";
-import "../scripts/media-chrome.js";
 
 export function VideoPlayerClient({
   source,
@@ -15,42 +13,42 @@ export function VideoPlayerClient({
   const [isMediaChromeLoaded, setIsMediaChromeLoaded] = React.useState(false);
   const [isHlsVideoElementLoaded, setIsHlsVideoElementLoaded] = React.useState(false);
 
-  // const loadScript = (src: string) => {
-  //   return new Promise((resolve, reject) => {
-  //     const script = document.createElement("script");
-  //     script.src = src;
-  //     script.type = "module";
-  //     script.onload = () => resolve(script);
-  //     script.onerror = () => reject(new Error(`[react-farcaster-embed] Script load error for ${src}`));
-  //     document.head.appendChild(script);
-  //   });
-  // };
+  const loadScript = (src: string) => {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.type = "module";
+      script.onload = () => resolve(script);
+      script.onerror = () => reject(new Error(`[react-farcaster-embed] Script load error for ${src}`));
+      document.head.appendChild(script);
+    });
+  };
 
-  // React.useEffect(() => {
-  //   const mediaChrome = "https://cdn.jsdelivr.net/npm/media-chrome@1/+esm";
-  //   const hlsVideoElement = "https://cdn.jsdelivr.net/npm/hls-video-element@1.0/+esm";
+  React.useEffect(() => {
+    const mediaChrome = "scripts/media-chrome.js";
+    const hlsVideoElement = "scripts/hls-video-element.js";
 
-  //   loadScript(mediaChrome)
-  //     .then(() => {
-  //       setIsMediaChromeLoaded(true);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Media Chrome loading failed", error);
-  //     });
+    loadScript(mediaChrome)
+      .then(() => {
+        setIsMediaChromeLoaded(true);
+      })
+      .catch((error) => {
+        console.error("Media Chrome loading failed", error);
+      });
 
-  //   loadScript(hlsVideoElement)
-  //     .then(() => {
-  //       setIsHlsVideoElementLoaded(true);
-  //     })
-  //     .catch((error) => {
-  //       console.error("HLS Video Element loading failed", error);
-  //     });
+    loadScript(hlsVideoElement)
+      .then(() => {
+        setIsHlsVideoElementLoaded(true);
+      })
+      .catch((error) => {
+        console.error("HLS Video Element loading failed", error);
+      });
 
-  //   return () => {
-  //     document.head.removeChild(document.head.querySelector(`script[src="${mediaChrome}"]`));
-  //     document.head.removeChild(document.head.querySelector(`script[src="${hlsVideoElement}"]`));
-  //   };
-  // }, [source, poster, aspectRatio]);
+    return () => {
+      document.head.removeChild(document.head.querySelector(`script[src="${mediaChrome}"]`));
+      document.head.removeChild(document.head.querySelector(`script[src="${hlsVideoElement}"]`));
+    };
+  }, [source, poster, aspectRatio]);
 
   return (
     <div
