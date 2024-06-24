@@ -10,8 +10,8 @@ export function VideoPlayerClient({
   poster: string;
   aspectRatio: number;
 }) {
-  const [isMediaChromeLoaded, setIsMediaChromeLoaded] = React.useState(false);
-  const [isHlsVideoElementLoaded, setIsHlsVideoElementLoaded] = React.useState(false);
+  const [isMediaChromeLoaded, setIsMediaChromeLoaded] = React.useState(true);
+  const [isHlsVideoElementLoaded, setIsHlsVideoElementLoaded] = React.useState(true);
 
   const loadScript = (src: string) => {
     return new Promise((resolve, reject) => {
@@ -24,31 +24,31 @@ export function VideoPlayerClient({
     });
   };
 
-  React.useEffect(() => {
-    const mediaChrome = "https://cdn.jsdelivr.net/npm/media-chrome@1/+esm";
-    const hlsVideoElement = "https://cdn.jsdelivr.net/npm/hls-video-element@1.0/+esm";
+  // React.useEffect(() => {
+  //   // const mediaChrome = "https://cdn.jsdelivr.net/npm/media-chrome@1/+esm";
+  //   // const hlsVideoElement = "https://cdn.jsdelivr.net/npm/hls-video-element@1.0/+esm";
 
-    loadScript(mediaChrome)
-      .then(() => {
-        setIsMediaChromeLoaded(true);
-      })
-      .catch((error) => {
-        console.error("Media Chrome loading failed", error);
-      });
+  //   loadScript(mediaChrome)
+  //     .then(() => {
+  //       setIsMediaChromeLoaded(true);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Media Chrome loading failed", error);
+  //     });
 
-    loadScript(hlsVideoElement)
-      .then(() => {
-        setIsHlsVideoElementLoaded(true);
-      })
-      .catch((error) => {
-        console.error("HLS Video Element loading failed", error);
-      });
+  //   loadScript(hlsVideoElement)
+  //     .then(() => {
+  //       setIsHlsVideoElementLoaded(true);
+  //     })
+  //     .catch((error) => {
+  //       console.error("HLS Video Element loading failed", error);
+  //     });
 
-    return () => {
-      document.head.removeChild(document.head.querySelector(`script[src="${mediaChrome}"]`));
-      document.head.removeChild(document.head.querySelector(`script[src="${hlsVideoElement}"]`));
-    };
-  }, [source, poster, aspectRatio]);
+  //   return () => {
+  //     document.head.removeChild(document.head.querySelector(`script[src="${mediaChrome}"]`));
+  //     document.head.removeChild(document.head.querySelector(`script[src="${hlsVideoElement}"]`));
+  //   };
+  // }, [source, poster, aspectRatio]);
 
   return (
     <div
