@@ -1,5 +1,5 @@
-// import "../scripts/hls-video-element.js";
-// import "../scripts/media-chrome.js";
+import "../../scripts/hls-video-element.js";
+import "../../scripts/media-chrome.js";
 
 export function VideoPlayer({ source, poster, aspectRatio }: { source: string; poster: string; aspectRatio: number }) {
   return (
